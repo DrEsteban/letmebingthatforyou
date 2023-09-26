@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
 
+    <meta name="robots" content="noindex" />
     <meta name="keywords" content="bing, google, let me bing that for you, let me google that for you" />
     <meta name="description" content="Let Me Bing That For You! - For all those people that find it more convenient to bother you with their questions rather than Bing it for themselves." />
 
@@ -27,7 +28,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 
-    <environment include="Production">
+    @* <environment include="Production">
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-NY00N1JKK9"></script>
         <script>
@@ -37,7 +38,7 @@
 
             gtag('config', 'G-NY00N1JKK9');
         </script>
-    </environment>
+    </environment> *@
 
     @RenderSection("Header", required: false)
 </head>
