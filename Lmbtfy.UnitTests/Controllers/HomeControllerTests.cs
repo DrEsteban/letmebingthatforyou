@@ -13,7 +13,7 @@ namespace Lmbtfy.UnitTests.Controllers
             var controller = new HomeController();
 
             // act
-            var result = controller.Index(null) as ViewResult;
+            var result = controller.Index(null, null) as ViewResult;
 
             // assert
             Assert.Null(result.ViewName);
@@ -27,7 +27,7 @@ namespace Lmbtfy.UnitTests.Controllers
             var controller = new HomeController();
 
             // act
-            var result = controller.Index(question) as ViewResult;
+            var result = controller.Index(null, question) as ViewResult;
 
             // assert
             Assert.Same(result.ViewData["Question"], question);
