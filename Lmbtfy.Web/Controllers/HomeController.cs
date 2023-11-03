@@ -1,5 +1,6 @@
 ﻿using Lmbtfy.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.IO;
 using System.Net;
 
@@ -22,7 +23,7 @@ namespace Lmbtfy.Web.Controllers
         [Route("[action]")]
         public ActionResult GenerateUrl(string q)
         {
-            string path = Url.ActionLink("Index", "Home", new { q }, "https", Request.Host.Value);
+            string path = $"https://{Request.Host.Value}/?q={q}";
             string tinyUrl = GenerateTinyUrl(path);
 
             return PartialView("_GenerateUrl", new GeneratedUrlModel { Url = path, TinyUrl = tinyUrl });
