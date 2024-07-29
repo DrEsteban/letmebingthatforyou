@@ -24,10 +24,11 @@ public class HomeController : Controller
     [Route("[action]")]
     public async Task<ActionResult> GenerateUrl(string q)
     {
+        q = q.Replace(' ', '+');
         string path = $"https://{Request.Host.Value}/?q={q}";
         string tinyUrl = await GenerateTinyUrlAsync(path);
 
-        return PartialView("_GenerateUrl", new GeneratedUrlModel { Url = path.Replace(' ', '+'), TinyUrl = tinyUrl });
+        return PartialView("_GenerateUrl", new GeneratedUrlModel { Url = path, TinyUrl = tinyUrl });
     }
 
     [Route("[action]")]
