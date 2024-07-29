@@ -14,10 +14,11 @@
     <link rel="stylesheet" type="text/css" href="~/css/Site.css" />
     <link rel="stylesheet" type="text/css" href="~/lib/fontawesome/css/all.min.css" />
     @{
-        var backgroundPhoto = await memoryCache.GetOrCreateAsync<string>("background", async entry => 
+        var category = keywordService.GetDailyKeyword();
+        var backgroundPhoto = await memoryCache.GetOrCreateAsync<string>($"background{category}", async entry => 
         {
-            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1);
-            return await UnsplashClient.GetRandomPhotoAsync(keywordService.GetDailyKeyword());
+            entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(24);
+            return await UnsplashClient.GetRandomPhotoAsync(category);
         });
     }
     <style type="text/css">

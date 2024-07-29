@@ -1,19 +1,18 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Lmbtfy.Web
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args)
-                .Build()
-                .Run();
-        }
+namespace Lmbtfy.Web;
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateWebHostBuilder(args)
+            .Build()
+            .Run();
     }
+
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup<Startup>();
 }

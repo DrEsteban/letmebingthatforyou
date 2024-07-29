@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace Lmbtfy.Web.Services;
 
-namespace Lmbtfy.Web.Services
+public interface IKeywordService
 {
-    public interface IKeywordService
-    {
-        string GetDailyKeyword();
-    }
+    string GetDailyKeyword();
 }

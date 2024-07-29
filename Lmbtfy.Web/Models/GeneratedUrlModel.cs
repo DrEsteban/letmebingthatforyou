@@ -1,8 +1,7 @@
-﻿namespace Lmbtfy.Web.Models
+﻿namespace Lmbtfy.Web.Models;
+
+public class GeneratedUrlModel
 {
-    public class GeneratedUrlModel
-    {
-        public string Url { get; set; }
-        public string TinyUrl { get; set; }
-    }
+    public string Url { get; set; }
+    public string TinyUrl { get; set; }
 }

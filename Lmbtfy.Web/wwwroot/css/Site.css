@@ -163,9 +163,9 @@ body ul.credits li a {
     font-size: 1.2em;
     border: solid 1px #000;
     background-color: #445566;
-    filter: alpha(opacity=50);
-    -moz-opacity: 0.5;
-    opacity: 0.5;
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.9;
+    opacity: 0.9;
     position: relative;
     height: 2em;
 }
