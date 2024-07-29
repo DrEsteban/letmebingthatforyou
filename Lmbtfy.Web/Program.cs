@@ -1,18 +1,33 @@
-﻿using Microsoft.AspNetCore;
+﻿using Lmbtfy.Web;
+using Lmbtfy.Web.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-namespace Lmbtfy.Web;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<UnsplashClient>();
+builder.Services.AddMemoryCache();
+builder.Services.AddTransient<IKeywordService, KeywordService>();
+
+var app = builder.Build();
+
+if (builder.Environment.IsDevelopment())
 {
-    public static void Main(string[] args)
-    {
-        CreateWebHostBuilder(args)
-            .Build()
-            .Run();
-    }
-
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .UseStartup<Startup>();
+    app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseHsts();
+}
+
+app.UseStaticFiles();
+app.UseHttpsRedirection();
+
+app.MapDefaultControllerRoute();
+
+app.Run();
