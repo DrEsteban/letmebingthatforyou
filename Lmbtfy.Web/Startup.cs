@@ -1,4 +1,5 @@
-﻿using Lmbtfy.Web.Services;
+﻿using System.Net.Http;
+using Lmbtfy.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,9 @@ namespace Lmbtfy.Web
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddHttpClient();
+            services.AddSingleton<UnsplashClient>();
+            services.AddMemoryCache();
 
             services.AddTransient<IKeywordService, KeywordService>();
         }
