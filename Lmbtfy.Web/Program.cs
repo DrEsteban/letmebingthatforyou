@@ -22,12 +22,13 @@ if (builder.Environment.IsDevelopment())
 }
 else
 {
+    app.UseHttpsRedirection();
     app.UseHsts();
 }
 
 app.UseStaticFiles();
-app.UseHttpsRedirection();
 
+app.UseRouting();
 app.MapDefaultControllerRoute();
 
 app.Run();
