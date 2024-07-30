@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Lmbtfy.Web.Models;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lmbtfy.Web.Controllers;
@@ -9,10 +10,12 @@ namespace Lmbtfy.Web.Controllers;
 public class HomeController : Controller
 {
     private readonly HttpClient _client;
+    private readonly IAntiforgery _antiforgery;
 
-    public HomeController(IHttpClientFactory factory)
+    public HomeController(IHttpClientFactory factory, IAntiforgery antiforgery)
     {
         _client = factory.CreateClient();
+        _antiforgery = antiforgery;
     }
 
     [Route("[action]")]
@@ -22,8 +25,17 @@ public class HomeController : Controller
     }
 
     [Route("[action]")]
-    public async Task<ActionResult> GenerateUrl(string q)
+    public async Task<ActionResult> GenerateUrl(string q, string k)
     {
+        HttpContext.Request.Headers["RequestVerificationToken"] = k;
+        try
+        {
+            await _antiforgery.ValidateRequestAsync(HttpContext);
+        }
+        catch (AntiforgeryValidationException)
+        {
+            return BadRequest();
+        }
         q = q.Replace(' ', '+');
         string path = $"https://{Request.Host.Value}/?q={q}";
         string tinyUrl = await GenerateTinyUrlAsync(path);

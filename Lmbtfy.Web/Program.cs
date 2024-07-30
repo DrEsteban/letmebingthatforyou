@@ -13,6 +13,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddSingleton<UnsplashClient>();
 builder.Services.AddMemoryCache();
 builder.Services.AddTransient<IKeywordService, KeywordService>();
+builder.Services.AddAntiforgery();
 
 var app = builder.Build();
 

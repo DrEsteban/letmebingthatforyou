@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Let Steven Bing that for you!";
 }
+@inject IAntiforgery Antiforgery
 
 <div id="bgDiv">
 
@@ -27,6 +28,9 @@
 <div class="shader_right"></div>
 
 @section Scripts {
+    @{
+        var tokens = Antiforgery.GetAndStoreTokens(Context);
+    }
     <script type="text/javascript">
         $(function () {
             var searchForm = $("#sb_form");
@@ -36,7 +40,7 @@
             searchForm.submit(function (e) {
                 if (searchQuery.val() != "") {
                     searchResult.load(
-                        searchForm[0].action + '?q=' + escape(searchQuery.val()),
+                        searchForm[0].action + '?q=' + escape(searchQuery.val()) + '&k=@tokens.RequestToken',
                         function (result) {
                             searchResult.show("bounce", "fast");
                         });
