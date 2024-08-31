@@ -180,5 +180,6 @@ body ul.credits li a {
     }
 
 .steps {
+    list-style-type: none;
     padding-left: 8px;
 }
