@@ -33,8 +33,8 @@ $(function() {
         $(".step4").doStep("drop", function() {
             var searchButton = $("#sb_form_go");
             mouse.animate({
-                top: (searchButton.offset().top + 12) + "px",
-                left: (searchButton.offset().left + 15) + "px"
+                top: (searchButton.offset().top + 25) + "px",
+                left: (searchButton.offset().left + 20) + "px"
             }, 2000, 'swing', function() {
                 searchButton.click();
             });
