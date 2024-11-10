@@ -34,7 +34,7 @@ $(function() {
             var searchButton = $("#sb_form_go");
             mouse.animate({
                 top: (searchButton.offset().top + 25) + "px",
-                left: (searchButton.offset().left + 20) + "px"
+                left: (searchButton.offset().left + 25) + "px"
             }, 2000, 'swing', function() {
                 searchButton.click();
             });
